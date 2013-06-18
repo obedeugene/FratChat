@@ -1,12 +1,12 @@
 module ApplicationHelper
 
-  
-#  def title
-#    base_title = "Social App"
-#    if @title.nil?
-#      base_title
-#    else
-#      "#{base_title} | #{title}"  
-#    end  
-#  end
+ #Returns base title on a per page basis. 
+  def full_title(page_title) 
+    base_title = 'Social App'
+    if page_title.empty?
+      base_title
+    else
+      "#{base_title} | #{page_title}"  
+    end  
+  end
 end   

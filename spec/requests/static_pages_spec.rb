@@ -6,13 +6,17 @@ describe "Static Pages" do
 
   	it "should have the content 'Social App'" do
   	   visit '/home'
-  	   page.should have_selector('h1', :text => 'Social App')
-  	end 
+   	end 
 
-    it "should have the right title" do
+    it "should have the base title" do
        visit '/home'
-       page.should have_selector('title', :text => "Social App | Home")
-    end    
+       page.should have_selector('title', :text => "Social App")
+    end  
+
+    it "should not have a custom page title" do
+       visit '/home'
+       page.should_not have_selector('title', :text => '| Home')
+    end
  end
 
  describe "Help Page" do
