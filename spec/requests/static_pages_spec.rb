@@ -1,61 +1,50 @@
 require 'spec_helper'
 
-describe "Static Pages" do
-  
- describe "Home Page" do
+describe "Static pages" do
 
-  	it "should have the content 'Social App'" do
-  	   visit '/home'
-   	end 
+  subject { page }
 
-    it "should have the base title" do
-       visit '/home'
-       page.should have_selector('title', :text => "Social App")
-    end  
+  describe "Home page" do
+    before { visit root_path }
 
-    it "should not have a custom page title" do
-       visit '/home'
-       page.should_not have_selector('title', :text => '| Home')
-    end
- end
-
- describe "Help Page" do
- 
-  	it "should have the content 'Help'" do
-  	   visit '/help'
-       page.should have_selector('h1', :text => 'Help')
-  	end 
-
-    it "should have the right title" do
-       visit '/help'
-       page.should have_selector('title', :text => "Social App | Help")
-    end    
+    it { should have_selector('h1',    text: 'Social App') }
+    it { should have_selector('title', text: full_title('')) }
+    it { should_not have_selector 'title', text: '| Home' }
   end
 
- describe "About Page" do
+  describe "Help page" do
+    before { visit help_path }
 
-  	it "should have the content 'About'" do
-  	   visit '/about'
-       page.should have_selector('h1', :text => 'About Us')
-  	end 	
-
-    it "should have the right title" do
-       visit '/about'
-       page.should have_selector('title', :text => "Social App | About Us")
-    end    
+    it { should have_selector('h1',    text: 'Help') }
+    it { should have_selector('title', text: full_title('Help')) }
   end
 
- describe "Contact" do
+  describe "About page" do
+    before { visit about_path }
 
-    it "should have the first h1 'Contact'" do
-       visit '/contact'
-       page.should have_selector('h1', :text => 'Contact')
-    end   
+    it { should have_selector('h1',    text: 'About') }
+    it { should have_selector('title', text: full_title('About Us')) }
+  end
 
-    it "should have the right title" do
-       visit '/contact'
-       page.should have_selector('title', :text => "Social App | Contact")
-    end    
+  describe "Contact page" do
+    before { visit contact_path }
+
+    it { should have_selector('h1',    text: 'Contact') }
+    it { should have_selector('title', text: full_title('Contact')) }
+  end
+
+  it "should have the right links on the layout" do
+    visit root_path
+    click_link "About"
+    page.should have_selector 'title', text: full_title('About Us')
+    click_link "Help"
+    page.should have_selector 'title', text: full_title('Help')
+    click_link "Contact"
+    page.should have_selector 'title', text: full_title('Contact')
+    click_link "Home"
+    click_link "Sign up now!"
+    page.should have_selector 'title', text: full_title('Sign Up')
+    click_link "Social App"
+    page.should have_selector 'h1', text: 'Social App'
   end
 end
-
