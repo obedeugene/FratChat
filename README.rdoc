@@ -1,3 +1,12 @@
 ==FratChat
 
-This is a FratChat built in Ruby on Rails.
+FratChat is an app that allows Fraternities and Sororities to chat with each other.
+
+
+ 	$ cd /tmp
+    $ git clone git@github.com:obedeugene/fratchat.git
+    $ cd topspots
+    $ bundle install
+    $ rake db:migrate
+    $ rake db:test:prepare
+
