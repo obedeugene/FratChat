@@ -2,8 +2,7 @@
 
 FratChat is an app that allows Fraternities and Sororities to chat with each other.
 
-
- 	$ cd /tmp
+	$ cd /tmp
     $ git clone git@github.com:obedeugene/fratchat.git
     $ cd topspots
     $ bundle install
