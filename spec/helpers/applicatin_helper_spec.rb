@@ -8,7 +8,7 @@ describe ApplicationHelper do
     end
 
     it "should includes the base name" do
-      full_title("foo").should =~ /^Social App/
+      full_title("foo").should =~ /^FratChat/
     end
 
     it "should not include a bar for the home page" do
